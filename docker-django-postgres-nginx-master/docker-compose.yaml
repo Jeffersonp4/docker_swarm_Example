@@ -1,0 +1,104 @@
+version: "3.8"
+
+services:
+  db_postgres:
+    image: postgres:11.5
+    environment:
+     POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    hostname: vip
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      #VirtualIPs- "NetworkID": "4mwqtskwzsxi85e45oomglfm6"  , "Addr": "10.0.16.2/24"
+
+  django_app:
+    image: 127.0.0.1:5000
+    build: .
+    volumes:
+      - static:/code/static
+      - .:/code
+
+    deploy:
+      mode: replicated
+      replicas: 1
+
+    depends_on:
+      - db_postgres
+    
+  nginx:
+    image: nginx
+    ports:
+      - "8000:80"
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static:/code/static
+    depends_on:
+      - django_app
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jeffersonpayano9@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: J3y123456
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "8889:80"
+
+  db_mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      SA_PASSWORD: "Your_password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db_mysql
+    environment:
+      PMA_HOST: db_mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "8081:80"
+
+volumes:
+  .:
+  dbdata:
+  postgres_data:
+  static:
+
+networks:
+  default:
+    external:
+      name: red-overlay

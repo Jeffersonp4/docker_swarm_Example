@@ -1,0 +1,2 @@
+/opt/mssql/bin/crash-support-functions.sh: line 239: /opt/mssql/bin/paldumper: Operation not permitted
+/opt/mssql/bin/crash-support-functions.sh: line 249: /opt/mssql/bin/paldumper: Operation not permitted

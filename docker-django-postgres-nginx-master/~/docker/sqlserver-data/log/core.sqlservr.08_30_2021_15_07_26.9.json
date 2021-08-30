@@ -1,0 +1,38 @@
+{
+    "reason": "0x00000006",
+    "processName": "sqlservr",
+    "pid": "9",
+    "instanceId": "9f2c7ae9-acec-4a2b-aa91-78eeb9309985",
+    "crashId": "6876439f-3ec0-4913-8ee7-45068048cb4a",
+    "threadState": "0x00007fe6ce1fa6a8",
+    "threadId": "39",
+    "libosThreadId": "0x74",
+    "buildStamp": "a5b3f518e501405ea4b46f546834883e540d503e9aa013f894f66d70b45825d6",
+    "message": "Termination of \\SystemRoot\\system32\\AppLoader.exe was due to fatal error 0xC0000001",
+    "address": "0x3fffbd053014",
+    "stackTrace": [
+        "file://package4/windows/system32/sqlpal.dll+0x0000000000298E4C",
+        "file://package4/windows/system32/sqlpal.dll+0x0000000000296DF5",
+        "file://package4/windows/system32/sqlpal.dll+0x0000000000253180",
+        "file://package4/windows/system32/sqlpal.dll+0x0000000000253014",
+        "file://package4/windows/system32/sqlpal.dll+0x0000000000251E6B",
+        "file://package4/windows/system32/sqlpal.dll+0x00000000002ACB8B",
+        "file://package4/windows/system32/sqlpal.dll+0x00000000003927F8",
+        "file:///windows/system32/AppLoader.exe+0x0000000000004729",
+        "file:///windows/system32/AppLoader.exe+0x000000000000479B",
+        "file:///windows/system32/AppLoader.exe+0x00000000000047DB",
+        "file:///windows/system32/AppLoader.exe+0x000000000000FB5E",
+        "file:///Windows/SYSTEM32/KERNEL32.DLL+0x0000000000014414",
+        "file:///windows/system32/ntdll.dll+0x0000000000075541"
+    ],
+    "stackModules": [
+        "file://package4/windows/system32/sqlpal.dll=93A0F1E0DA784D6592E4B7D98F03B2C01",
+        "file:///windows/system32/AppLoader.exe=E7C360A583F442C69AB0F6BF662019821",
+        "file:///Windows/SYSTEM32/KERNEL32.DLL=C715300FB2664729A6126A3F591E6F302",
+        "file:///windows/system32/ntdll.dll=45137AA3F9814512B3123991067EEE6E2"
+    ],
+    "distribution": "Ubuntu 20.04.2 LTS",
+    "processors": "12",
+    "total_memory": "26705874944",
+    "timestamp": "Mon Aug 30 15:07:26 2021"
+}
